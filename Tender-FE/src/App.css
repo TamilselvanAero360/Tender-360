@@ -1,0 +1,28 @@
+/* ---------------------------
+   App Wrapper
+---------------------------- */
+
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left; /* Remove unwanted center alignment */
+  min-height: 100vh;
+}
+
+/* Remove Vite logo effects */
+.logo,
+.logo:hover,
+.logo.react:hover {
+  filter: none;
+  animation: none;
+}
+
+/* Remove Vite extra cards */
+.card {
+  padding: 0;
+}
+
+.read-the-docs {
+  display: none;
+}

@@ -1,0 +1,192 @@
+/* ------------------------------
+   MAIN PAGE LAYOUT
+------------------------------ */
+.allbid-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.allbid-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fc;
+}
+
+/* ------------------------------
+   CONTENT WRAPPER
+------------------------------ */
+.allbid-container {
+  padding: 20px 25px;
+}
+
+/* ------------------------------
+   PAGE HEADER
+------------------------------ */
+.allbid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.allbid-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.allbid-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Create Button */
+.create-btn {
+  padding: 10px 10px;
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 250x;
+}
+
+/* ------------------------------
+   TABLE BOX
+------------------------------ */
+.table-wrapper {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e3e6f0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* TABLE */
+.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+/* TABLE HEADER */
+.custom-table thead tr th {
+  background: #e2e2e2;
+  color: rgb(49, 49, 49);
+  padding: 12px 10px;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+}
+
+/* Rounded header corners */
+.custom-table thead tr th:first-child {
+  border-top-left-radius: 14px;
+}
+
+.custom-table thead tr th:last-child {
+  border-top-right-radius: 14px;
+}
+
+/* TABLE BODY */
+.custom-table tbody tr td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e8e8e8;
+  background: white;
+}
+
+/* ------------------------------
+   DOABILITY CELL
+------------------------------ */
+.doability-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: 145px; /* ⭐ Important so cell doesn't overflow */
+}
+
+
+.doability-select {
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.doability-badge {
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.doability-badge.green {
+  background: #abf5af;
+  color: green;
+}
+
+.doability-badge.red {
+  background: #f5b5b5;
+  color: #b10000;
+}
+
+/* ------------------------------
+   REMARKS COLUMN
+------------------------------ */
+.remarks-col {
+  max-width: 260px;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+/* ------------------------------
+   ACTION COLUMN
+------------------------------ */
+.action-col {
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  gap: 14px;
+}
+
+.action-icon {
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+/* ------------------------------
+   TABLET RESPONSIVE ONLY
+------------------------------ */
+@media (max-width: 1024px) {
+  .allbid-container {
+    padding: 15px;
+  }
+
+  .allbid-header h2 {
+    font-size: 20px;
+  }
+
+  .create-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+  }
+
+  .remarks-col {
+    max-width: 170px;
+  }
+
+  .custom-table thead tr th,
+  .custom-table tbody tr td {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+}

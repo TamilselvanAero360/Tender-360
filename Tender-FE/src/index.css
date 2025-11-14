@@ -1,0 +1,67 @@
+/* ---------------------------
+   Global App Styles
+---------------------------- */
+
+:root {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #000;
+  background-color: #f1f8ff; /* Light gray like the design */
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Default button reset */
+button {
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+/* Heading smooth style */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Make whole app responsive base */
+img {
+  max-width: 100%;
+  display: block;
+}
