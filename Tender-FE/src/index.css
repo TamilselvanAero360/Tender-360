@@ -3,12 +3,12 @@
 ---------------------------- */
 
 :root {
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: "Poppins", system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color: #000;
-  background-color: #f1f8ff; /* Light gray like the design */
+  background-color: #EDEDED; /* Light gray like the design */
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

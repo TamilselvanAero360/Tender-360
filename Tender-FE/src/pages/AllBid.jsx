@@ -6,15 +6,16 @@ import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import SearchBar from "../components/SearchBar";
 import Filter from "../components/Filter";
-
+import { Navigate, useNavigate } from "react-router-dom";
 const AllBid = () => {
+  const navigate=useNavigate();
   const initialData = [
     {
       sno: 1,
       tenderId: "GEM/2025/B/6687212",
       published: "20/08/2025",
       authority: "Indian Army",
-      qty: 1,
+      qty: 10,
       state: "Haryana",
       doability: "YES",
       remarks: "accepted in technical evaluation, bid contract not result found.",
@@ -25,10 +26,10 @@ const AllBid = () => {
     },
     {
       sno: 2,
-      tenderId: "GEM/2025/B/6687212",
+      tenderId: "GEM/2025/B/6687213",
       published: "20/08/2025",
       authority: "Indian Army",
-      qty: 1,
+      qty: 25,
       state: "Haryana",
       doability: "NO",
       remarks: "accepted in technical evaluation, bid contract not result found.",
@@ -39,10 +40,10 @@ const AllBid = () => {
     },
     {
       sno: 3,
-      tenderId: "GEM/2025/B/6687212",
+      tenderId: "GEM/2025/B/6687214",
       published: "20/08/2025",
       authority: "Indian Army",
-      qty: 1,
+      qty: 30,
       state: "Haryana",
       doability: "NO",
       remarks: "accepted in technical evaluation, bid contract not result found.",
@@ -83,26 +84,26 @@ const AllBid = () => {
 
   return (
     <div className="allbid-layout">
-
-      {/* SIDEBAR */}
+ {/* SIDEBAR */}
       <Sidebar />
-
       {/* RIGHT SIDE */}
       <div className="allbid-right">
 
         {/* TOPBAR */}
         <Topbar />
-
+         
         {/* PAGE CONTENT */}
         <div className="allbid-container">
-
+              
           <div className="allbid-header">
+           
             <h2>All bid</h2>
 
             <div className="allbid-actions">
               <SearchBar placeholder="Search anything" />
               <Filter />
-              <button className="create-btn">Create Bid</button>
+              <button onClick={() => navigate("/create-bid")}
+              className="create-btn">Create Bid</button>
             </div>
           </div>
 
@@ -112,7 +113,7 @@ const AllBid = () => {
 
               <thead>
                 <tr>
-                  <th onClick={() => handleSort("sno")}>S.no ↕</th>
+                  <th onClick={() => handleSort("sno")}>S.no </th>
                   <th onClick={() => handleSort("tenderId")}>Tender Id ↕</th>
                   <th onClick={() => handleSort("published")}>Published Date ↕</th>
                   <th onClick={() => handleSort("authority")}>Tendering Authority ↕</th>

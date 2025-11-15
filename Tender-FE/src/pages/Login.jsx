@@ -68,10 +68,11 @@ const Login = () => {
               Forget password?
             </Link>
           </div>
-
+            <Link to="/allbid">
           <button className="login-btn" type="submit">
             Login
           </button>
+          </Link>
         </form>
       </div>
     </div>

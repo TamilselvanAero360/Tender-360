@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f5f5f5;
+  padding: 20px;
+}
+
+.back-label {
+  color: #555;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.section-title {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+input, select, textarea {
+  border: 1.5px solid #bfbfbf;
+  border-radius: 6px;
+  padding: 9px 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  height: 45px;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #000;
+}
+
+.err {
+  color: red;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.cancel-btn, .save-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancel-btn {
+  background: #dcdcdc;
+  color: #000;
+}
+
+.save-btn {
+  background: #000;
+  color: white;
+}
+
+/* RESPONSIVE FIXES */
+@media(max-width: 600px){
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  input, select, textarea {
+    font-size: 13px;
+  }
+}
