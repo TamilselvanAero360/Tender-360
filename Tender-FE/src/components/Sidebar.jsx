@@ -15,7 +15,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { name: "Home", icon: <Home size={24} />, path: "/" },
+    { name: "Home", icon: <Home size={24} />, path: "/dashboard" },
     { name: "All Bid", icon: <Inbox size={24} />, path: "/all-bid" },
     { name: "Active", icon: <CheckSquare size={24} />, path: "/active" },
     { name: "Archive", icon: <BookOpen size={24} />, path: "/archive" },
@@ -45,7 +45,7 @@ const Sidebar = () => {
       </div>
 
       <div className="menu-bottom">
-        <Link to="/logout" className="menu-item logout">
+        <Link to="/" className="menu-item logout">
           <div className="icon">
             <LogOut size={24} />
           </div>

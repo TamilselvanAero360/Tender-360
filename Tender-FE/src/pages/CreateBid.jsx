@@ -348,6 +348,8 @@ const CreateBid = () => {
                 }}
               />
 
+              
+
               <span className="err">{errors.uploadDoc}</span>
             </div>
           </div>

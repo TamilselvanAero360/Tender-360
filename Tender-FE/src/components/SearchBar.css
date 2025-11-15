@@ -1,42 +1,58 @@
 .searchbar-container {
-  width: 100%;
-  max-width: 300px;
-  height: 38px;
+  width: 100%;             
   background: #ffffff;
   border-radius: 8px;
   display: flex;
   align-items: center;
-  padding: 0 12px;
-  gap: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  /* font-family: "Poppins"; */
-  box-shadow: 0 2px 4px #a7a7a7;
+  padding: 0 14px;
+  gap: 10px;
+  height: 42px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
 }
 
+/* Icon */
 .searchbar-icon {
-  font-size: 14px;
+  font-size: 16px;
   color: #444;
 }
 
+/* Input */
 .searchbar-input {
   width: 100%;
   border: none;
+  outline: none;
   background: transparent;
   font-size: 15px;
-  /* font-family: "Poppins"; */
-  outline: none;
   color: #333;
+  font-family: inherit;
 }
 
-/* ---------- Tablet (max-width 1024px) ---------- */
+/* Tablet */
 @media (max-width: 1024px) {
   .searchbar-container {
-    max-width: 260px;
-    height: 36px;
+    height: 38px;
+    padding: 0 12px;
   }
 
   .searchbar-input {
     font-size: 14px;
+  }
+
+  .searchbar-icon {
+    font-size: 14px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .searchbar-container {
+    height: 36px;
+    padding: 0 10px;
+  }
+
+  .searchbar-input {
+    font-size: 13px;
   }
 
   .searchbar-icon {

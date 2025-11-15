@@ -11,6 +11,7 @@ function App() {
          <Route path="/" element={<Login />} /> 
          <Route path="/allbid" element={<AllBid />} />
          <Route path="/create-bid" element={<CreateBid />} />
+         
       </Routes>
     </Router>
   );

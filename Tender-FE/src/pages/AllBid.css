@@ -3,14 +3,16 @@
 ------------------------------ */
 .allbid-layout {
   display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
+  padding: 0px 0px;
 }
 
 .allbid-right {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background: #f4f5f7;
 }
 
@@ -50,7 +52,7 @@
 
 /* Create Button */
 .create-btn {
-  width: 180px;
+  width: 200px;
   height: 40px;
   /* border: none; */
   background: black;
@@ -79,8 +81,8 @@
 
 /* TABLE HEADER */
 th {
-  background: #e2e2e2 !important;
-  color: #292929;
+  background: #cecece !important;
+  color: #363636;
   padding: 10px 8px;
   font-size: 16px;
   font-weight: 600;
