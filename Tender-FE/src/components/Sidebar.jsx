@@ -16,7 +16,7 @@ const Sidebar = () => {
 
   const menuItems = [
     { name: "Home", icon: <Home size={24} />, path: "/dashboard" },
-    { name: "All Bid", icon: <Inbox size={24} />, path: "/all-bid" },
+    { name: "All Bid", icon: <Inbox size={24} />, path: "/allbid" },
     { name: "Active", icon: <CheckSquare size={24} />, path: "/active" },
     { name: "Archive", icon: <BookOpen size={24} />, path: "/archive" },
     { name: "Submitted", icon: <Archive size={24} />, path: "/submitted" },
@@ -25,8 +25,8 @@ const Sidebar = () => {
   return (
     <div
       className={`sidebar ${isOpen ? "expanded" : ""}`}
-    //   onMouseEnter={() => setIsOpen(true)}
-    //   onMouseLeave={() => setIsOpen(false)}
+      //   onMouseEnter={() => setIsOpen(true)}
+      //   onMouseLeave={() => setIsOpen(false)}
     >
       <div className="menu-top">
         {menuItems.map((item, index) => (
@@ -35,11 +35,7 @@ const Sidebar = () => {
             {isOpen && <span className="label">{item.name}</span>}
 
             {/* Tooltip */}
-            {!isOpen && (
-              <div className="tooltip">
-                {item.name}
-              </div>
-            )}
+            {!isOpen && <div className="tooltip">{item.name}</div>}
           </Link>
         ))}
       </div>

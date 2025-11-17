@@ -1,5 +1,5 @@
 import React from "react";
-import "./Topbar.css";
+import "../components/Topbar.css";
 import { FaUserCircle } from "react-icons/fa";
 
 const Topbar = () => {

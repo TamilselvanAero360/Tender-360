@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import "./CreateBid.css";
-import { Navigate, useNavigate } from "react-router-dom";
-const CreateBid = () => {
+import React, { useState, useEffect } from "react";
+import "./CreateBid.css";  // reuse same css
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+const EditBid = () => {
   const navigate = useNavigate();
+  const { id } = useParams(); // bid id from URL
+  // -----------------------------
+  // 1. INITIAL EMPTY STATE
+  // -----------------------------
   const [formData, setFormData] = useState({
     tenderId: "",
     category: "",
@@ -33,6 +38,45 @@ const CreateBid = () => {
 
   const [errors, setErrors] = useState({});
 
+  // -----------------------------
+  // 2. FETCH EXISTING BID (dummy for now)
+  // -----------------------------
+  useEffect(() => {
+    // You will replace this with API call later
+    const mock = {
+      tenderId: "GEM/2025/B/6687212",
+      category: "Electronics",
+      itemDescription: "Battery pack for UAV",
+      publishedDate: "2025-08-20",
+      authority: "Indian Army",
+      qty: "10",
+      state: "TN",
+      location: "Chennai",
+      estimatedValue: "1500000",
+      turnover: "2000000",
+      emdFee: "50000",
+      emdExemption: "Yes",
+      tenderFee: "2000",
+      tenderFeeExemption: "No",
+      prebidMandatory: "Yes",
+      prebidDate: "2025-09-15T10:00",
+      submissionDate: "2025-09-28T18:00",
+      raEnabled: "Yes",
+      corrigendum: "Updated technical document",
+      corrigendumDate: "2025-09-05",
+      doability: "YES",
+      remarks: "Need to confirm technical evaluation",
+      attachLink: "https://gemdocuments/sample",
+      attachName: "TechSpec.pdf",
+      uploadDoc: "",
+    };
+
+    setFormData(mock);
+  }, [id]);
+
+  // -----------------------------
+  // 3. HANDLE INPUT CHANGES
+  // -----------------------------
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -49,16 +93,25 @@ const CreateBid = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
-    alert("Form submitted successfully ✔️");
+
+    alert("Bid updated successfully ✔️");
+
+    // Later: send PUT request
+    // axios.put(`/api/bids/${id}`, formData)
+
+    navigate("/allbid");
   };
+
+  // -----------------------------
 
   return (
     <div className="form-container">
       <div className="back-label" onClick={() => navigate("/allbid")}>
         {"<"}back
       </div>
-      <h2 className="title">Create Bid</h2>
+      <h2 className="title">Edit Bid</h2>
 
+      {/* SAME UI AS CREATE BID */}
       <form className="form-wrapper" onSubmit={handleSubmit}>
         {/* SECTION 1 */}
         <div className="card">
@@ -118,7 +171,11 @@ const CreateBid = () => {
 
             <div className="input-group">
               <label>Qty</label>
-              <input name="qty" value={formData.qty} onChange={handleChange} />
+              <input
+                name="qty"
+                value={formData.qty}
+                onChange={handleChange}
+              />
               <span className="err">{errors.qty}</span>
             </div>
 
@@ -338,7 +395,6 @@ const CreateBid = () => {
 
             <div className="input-group">
               <label>Upload Document</label>
-
               <input
                 type="file"
                 name="uploadDoc"
@@ -347,9 +403,6 @@ const CreateBid = () => {
                   setFormData({ ...formData, uploadDoc: file });
                 }}
               />
-
-              
-
               <span className="err">{errors.uploadDoc}</span>
             </div>
           </div>
@@ -364,7 +417,7 @@ const CreateBid = () => {
             Cancel
           </button>
           <button type="submit" className="save-btn">
-            Save
+            Update
           </button>
         </div>
       </form>
@@ -372,4 +425,4 @@ const CreateBid = () => {
   );
 };
 
-export default CreateBid;
+export default EditBid;

@@ -10,7 +10,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const AllBid = () => {
   const navigate = useNavigate();
-  
+
   const initialData = [
     {
       sno: 1,
@@ -19,7 +19,7 @@ const AllBid = () => {
       authority: "Indian Army",
       qty: 10,
       state: "Haryana",
-      doability: "YES",
+      doability: "",
       remarks:
         "accepted in technical evaluation, bid contract not result found.",
       subDate: "08/11/2025 10:00AM",
@@ -34,7 +34,7 @@ const AllBid = () => {
       authority: "Indian Army",
       qty: 25,
       state: "Haryana",
-      doability: "NO",
+      doability: "",
       remarks:
         "accepted in technical evaluation, bid contract not result found.",
       subDate: "08/11/2025 10:00AM",
@@ -49,7 +49,7 @@ const AllBid = () => {
       authority: "Indian Army",
       qty: 30,
       state: "Haryana",
-      doability: "NO",
+      doability: "",
       remarks:
         "accepted in technical evaluation, bid contract not result found.",
       subDate: "08/11/2025 10:00AM",
@@ -82,13 +82,16 @@ const AllBid = () => {
 
   // --- DOABILITY CHANGE ---
   const handleDoability = (index, value) => {
-  setTableData(prev => {
-    const next = [...prev];
-    next[index] = { ...next[index], doability: value, doabilitySelected: true };
-    return next;
-  });
-};
-
+    setTableData((prev) => {
+      const next = [...prev];
+      next[index] = {
+        ...next[index],
+        doability: value,
+        doabilitySelected: true,
+      };
+      return next;
+    });
+  };
 
   return (
     <div className="allbid-layout">
@@ -202,10 +205,14 @@ const AllBid = () => {
 
                     <td className="action-col">
                       <FaEdit
-                        onClick={() => navigate("/edit-bid")}
+                        onClick={() => navigate(`/edit-bid/${index}`)}
                         className="action-icon"
                       />
-                      <FaEye className="action-icon" />
+
+                      <FaEye
+                        className="action-icon"
+                        onClick={() => navigate("/view-bid")}
+                      />
                     </td>
                   </tr>
                 ))}

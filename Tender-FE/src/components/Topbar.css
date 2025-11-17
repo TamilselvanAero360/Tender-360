@@ -1,21 +1,29 @@
+/* ---------------- TOPBAR CONTAINER ---------------- */
 .topbar-container {
   width: 100%;
-  padding: 12px 20px;
+  height: 70px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   font-family: "Segoe UI";
   background-color: #ffffff;
+  border-radius: 5px;
+  border-bottom: 1px solid #e5e5e5;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  /* ensures full edge-to-edge layout */
+  box-sizing: border-box;
 }
 
-/* Title */
+/* ---------------- TITLE ---------------- */
 .topbar-title {
   font-size: 20px;
   font-weight: 600;
 }
 
-/* User Section */
+/* ---------------- USER SECTION ---------------- */
 .topbar-user {
   display: flex;
   align-items: center;
@@ -31,6 +39,8 @@
   font-size: 16px;
   font-weight: 500;
 }
+
+/* ---------------- RIGHT SECTION (CONTENT BELOW TOPBAR) ---------------- */
 .right-section {
   flex: 1;
   display: flex;
@@ -38,21 +48,7 @@
   width: 100%;
 }
 
-.topbar-container {
-  width: 100%;
-  height: 70px;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: 1px solid #e5e5e5;
-  /* THIS LINE MAKES IT EDGE-TO-EDGE */
-  box-sizing: border-box;
-}
-
-
-/* ------------ TABLET ONLY (max-width 1024px) ------------ */
+/* ---------------- RESPONSIVE – TABLET ---------------- */
 @media (max-width: 1024px) {
   .topbar-container {
     padding: 10px 16px;
