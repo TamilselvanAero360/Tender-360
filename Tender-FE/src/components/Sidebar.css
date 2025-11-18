@@ -9,8 +9,8 @@
   transition: width 0.25s ease;
    border-radius: 6px;
   /* NEW FIX */
-  margin-top: 20px;
-  height: calc(100vh - 70px);
+  margin-top: 18px;
+  height: calc(95vh - 50px);
 
   display: flex;
   flex-direction: column;

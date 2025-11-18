@@ -11,6 +11,9 @@ import { Navigate, useNavigate } from "react-router-dom";
 const AllBid = () => {
   const navigate = useNavigate();
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterType, setFilterType] = useState("All filter");
+
   const initialData = [
     {
       sno: 1,
@@ -23,8 +26,8 @@ const AllBid = () => {
       remarks:
         "accepted in technical evaluation, bid contract not result found.",
       subDate: "08/11/2025 10:00AM",
-      editedBy: "Mukesh",
-      editedDate: "08/11/2025 10:00AM",
+      editedBy: "Tharun",
+      editedDate: "10/11/2025 10:00AM",
       status: "Active",
     },
     {
@@ -33,12 +36,12 @@ const AllBid = () => {
       published: "20/08/2025",
       authority: "Indian Army",
       qty: 25,
-      state: "Haryana",
+      state: "Gujarat",
       doability: "",
       remarks:
         "accepted in technical evaluation, bid contract not result found.",
       subDate: "08/11/2025 10:00AM",
-      editedBy: "Mukesh",
+      editedBy: "Dravid",
       editedDate: "08/11/2025 10:00AM",
       status: "Archive",
     },
@@ -48,11 +51,11 @@ const AllBid = () => {
       published: "20/08/2025",
       authority: "Indian Army",
       qty: 30,
-      state: "Haryana",
+      state: "Maharashtra",
       doability: "",
       remarks:
         "accepted in technical evaluation, bid contract not result found.",
-      subDate: "08/11/2025 10:00AM",
+      subDate: "04/11/2025 10:00AM",
       editedBy: "Mukesh",
       editedDate: "08/11/2025 10:00AM",
       status: "Archive",
@@ -61,6 +64,40 @@ const AllBid = () => {
 
   const [tableData, setTableData] = useState(initialData);
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
+
+  // Filter function
+  const filteredData = tableData.filter((item) => {
+    const q = searchQuery.toLowerCase();
+
+    // If no search, return all
+    if (!q) return true;
+
+    // All Filter → search everything
+    if (filterType === "All filter") {
+      return Object.values(item).some((v) =>
+        String(v).toLowerCase().includes(q)
+      );
+    }
+
+    // Map filter names to keys in table
+    const filterKeyMap = {
+      State: "state",
+      "Tender Id": "tenderId",
+      "Published Date": "published",
+      "Tendering Authority": "authority",
+      "Edited by": "editedBy",
+      EditedDate: "editedDate",
+      Doability: "doability",
+      Status: "status",
+      Remarks: "remarks",
+      Qty: "qty",
+    };
+
+    const key = filterKeyMap[filterType];
+    if (!key) return true;
+
+    return String(item[key]).toLowerCase().includes(q);
+  });
 
   // --- SORT ---
   const handleSort = (key) => {
@@ -108,8 +145,13 @@ const AllBid = () => {
             <h2>All bid</h2>
 
             <div className="allbid-actions">
-              <SearchBar placeholder="Search anything" />
-              <Filter />
+              <SearchBar
+                placeholder="Search anything"
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+
+              <Filter onSelect={(val) => setFilterType(val)} />
+
               <button
                 onClick={() => navigate("/create-bid")}
                 className="create-btn"
@@ -149,7 +191,7 @@ const AllBid = () => {
               </thead>
 
               <tbody>
-                {tableData.map((item, index) => (
+                {filteredData.map((item, index) => (
                   <tr key={index}>
                     <td>{item.sno}</td>
                     <td>{item.tenderId}</td>
@@ -197,7 +239,10 @@ const AllBid = () => {
                       )}
                     </td>
 
-                    <td className="remarks-col">{item.remarks}</td>
+                    <td className="remarks-col" title={item.remarks}>
+                      <span className="remarks-text">{item.remarks}</span>
+                    </td>
+
                     <td>{item.subDate}</td>
                     <td>{item.editedBy}</td>
                     <td>{item.editedDate}</td>

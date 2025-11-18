@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./CreateBid.css";
 import { Navigate, useNavigate } from "react-router-dom";
+
+
 const CreateBid = () => {
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     tenderId: "",
     category: "",
@@ -298,21 +301,23 @@ const CreateBid = () => {
 
             <div className="input-group">
               <label>Doability</label>
-              <input
-                name="doability"
+              <select  name="doability"
                 value={formData.doability}
-                onChange={handleChange}
-              />
+                onChange={handleChange}>
+                 <option value="selcect">--Select--</option>
+                 <option value="Yes">Yes</option>
+                 <option value="No">No</option>
+              </select>
               <span className="err">{errors.doability}</span>
             </div>
 
             <div className="input-group">
               <label>Remarks</label>
-              <input
+              <textarea 
                 name="remarks"
                 value={formData.remarks}
-                onChange={handleChange}
-              />
+                onChange={handleChange}>
+              </textarea>
               <span className="err">{errors.remarks}</span>
             </div>
 

@@ -1,34 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ViewBid.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const TenderDetails = () => {
-  const navigate=useNavigate();
+const ViewBid = () => {
+  const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+
+  // Dummy Data – from backend you will replace later  
+  const bid = {
+    tenderId: "GEM/2025/B/6687212",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Convallis turpis commodo cursus odio. In dictumst aenean eu egestas at. Nibh malesuada facilisis proin turpis donec justo. Nec non auctor sit mus pulvinar.",
+    published: "01/11/2025",
+    category: "-",
+    authority: "Indian Army",
+    qty: 30,
+    state: "Hariyana",
+    location: "Allahabad, UP",
+    submission: "11/11/2025 & 08:00AM",
+    prebidMeeting: "11/11/2025 & 08:00AM",
+    raEnable: 30,
+    corrigendumDate: "11/11/2025 & 08:00AM",
+  };
+
   return (
-    <div className="tender-container">
-      {/* Header */}
-      <div className="tender-header">
-        <button className="back-btn" onClick={() => navigate("/allbid")} >&lt; Back</button>
-        <br />
-       
-      </div>
- <h2 className="tender-id">Tender ID: 12345</h2>
-      {/* Item Description */}
-      <div className="item-description">
-        <h3>Item Description</h3>
-        <p>lorem ipohgmbmnbfstsx htf truyfm</p>
-      </div>
+    <div className="viewbid-container">
 
-      {/* Tender Info Table */}
-      <div className="table-section">
-        <h3>Tender Details</h3>
-        <table>
+      {/* BACK */}
+      <button className="back-btn" onClick={() => navigate("/allbid")}>
+        &lt; Back
+      </button>
+
+      <h2 className="tender-id">{bid.tenderId}</h2>
+
+      {/* ITEM DESCRIPTION */}
+      <section className="vb-section">
+        <h3>Item Description</h3>
+        <p className="vb-desc">{bid.description}</p>
+
+        <table className="vb-table">
           <thead>
             <tr>
-              <th>Publish Date</th>
+              <th>Published Date</th>
               <th>Category</th>
-              <th>Tender Authority</th>
-              <th>Doability</th>
+              <th>Tendering Authority</th>
               <th>Quantity</th>
               <th>State</th>
               <th>Location</th>
@@ -36,25 +51,25 @@ const TenderDetails = () => {
           </thead>
           <tbody>
             <tr>
-              <td>10-11-2025</td>
-              <td>Construction</td>
-              <td>Govt Dept</td>
-              <td>High</td>
-              <td>500</td>
-              <td>Delhi</td>
-              <td>India</td>
+              <td>{bid.published}</td>
+              <td>{bid.category}</td>
+              <td>{bid.authority}</td>
+              <td>{bid.qty}</td>
+              <td>{bid.state}</td>
+              <td>{bid.location}</td>
             </tr>
           </tbody>
         </table>
-      </div>
+      </section>
 
-      {/* Financial Table */}
-      <div className="table-section">
-        <h3>Financial</h3>
-        <table>
+      {/* FINANCIALS */}
+      <section className="vb-section">
+        <h3>Financials</h3>
+
+        <table className="vb-table">
           <thead>
             <tr>
-              <th>Estimate Value</th>
+              <th>Estimated Value</th>
               <th>Turnover Criteria</th>
               <th>EMD Fee</th>
               <th>EMD Fee Exemption</th>
@@ -62,70 +77,95 @@ const TenderDetails = () => {
               <th>Tender Fee Exemption</th>
             </tr>
           </thead>
+
           <tbody>
             <tr>
-              <td>₹50,00,000</td>
-              <td>₹2,00,00,000</td>
-              <td>₹50,000</td>
-              <td>No</td>
-              <td>₹5,000</td>
-              <td>Yes</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>30</td>
             </tr>
           </tbody>
         </table>
-      </div>
+      </section>
 
-      {/* PreBid Table */}
-      <div className="table-section">
-        <h3>PreBid</h3>
-        <table>
+      {/* PREBID */}
+      <section className="vb-section">
+        <h3>Prebid</h3>
+
+        <table className="vb-table">
           <thead>
             <tr>
               <th>Prebid Mandatory</th>
               <th>Submission Date & Time</th>
               <th>Prebid Meeting Date & Time</th>
-              <th>RA Eable</th>
+              <th>RA Enable</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Yes</td>
-              <td>15-11-2025 10:00 AM</td>
-              <td>16-11-2025 11:00 AM</td>
-              <td>Enabled</td>
+              <td>{bid.submission}</td>
+              <td>{bid.prebidMeeting}</td>
+              <td>{bid.raEnable}</td>
             </tr>
           </tbody>
         </table>
-      </div>
+      </section>
 
-      {/* Corrigendum Table */}
-      <div className="table-section">
+      {/* CORRIGENDUM */}
+      <section className="vb-section">
         <h3>Corrigendum</h3>
-        <table>
+
+        <table className="vb-table">
           <thead>
             <tr>
               <th>Corrigendum</th>
-              <th>Corrigendum Date & Time</th>
+              <th>Date & Time</th>
+              <th>Doability</th>
               <th>Remarks</th>
             </tr>
           </thead>
+
           <tbody>
             <tr>
-              <td>1</td>
-              <td>12-11-2025 09:00 AM</td>
-              <td>Updated specs</td>
+              <td>Yes</td>
+              <td>{bid.corrigendumDate}</td>
+              <td>Yes</td>
+              <td>Lorem ipsum dolor sit amet consectetur. Convallis turpis commodo cursus.</td>
             </tr>
           </tbody>
         </table>
-      </div>
+      </section>
 
-      {/* Documents Section */}
-      <div className="documents-section">
-        <h3>Documents</h3>
-        <button className="view-docs-btn">View Documents</button>
-      </div>
+      {/* DOCUMENTS */}
+      <section className="vb-section">
+        <h3>Documents & Link</h3>
+
+        <button className="view-template-btn" onClick={() => setShowPopup(true)}>
+          View Documents
+        </button>
+      </section>
+
+      {/* POPUP */}
+      {showPopup && (
+        <div className="popup-overlay" onClick={() => setShowPopup(false)}>
+          <div className="popup" onClick={(e) => e.stopPropagation()}>
+            <h3>Attached Files</h3>
+            <ul>
+              <li>📄 DummyDocument1.pdf</li>
+              <li>🔗 https://example.com/dummy-link</li>
+            </ul>
+            <button className="close-btn" onClick={() => setShowPopup(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export default TenderDetails;
+export default ViewBid;
