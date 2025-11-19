@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import config from "../constants/config"; // <-- using your config file
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState("");
 
   const validate = () => {
     let temp = {};
@@ -26,21 +30,51 @@ const Login = () => {
     return Object.keys(temp).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setApiError("");
 
-    if (validate()) {
-      alert("Login successful (dummy flow)");
-      // Add API call later
+    if (!validate()) return;
+
+    try {
+      const response = await fetch(`${config.apiBaseURL}/api/auth/login/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setApiError(data.detail || "Invalid email or password");
+        return;
+      }
+
+      // Save Knox token
+      localStorage.setItem("token", data.token);
+
+      // You can also store user type for permission (viewer / editor)
+      localStorage.setItem("role", data.user.role);
+
+      navigate("/allbid");
+    } catch (error) {
+      setApiError("Server error. Try again later.");
     }
   };
 
   return (
     <div className="login-page">
-      <h1 className="title">Tender 360°</h1>
+      <h1 className="title">Tender 360</h1>
 
       <div className="login-container">
         <h2 className="login-heading">Login</h2>
+
+        {apiError && <p className="error">{apiError}</p>}
 
         <form onSubmit={handleSubmit} className="login-form">
           <div className="input-group">
@@ -68,11 +102,10 @@ const Login = () => {
               Forget password?
             </Link>
           </div>
-            <Link to="/allbid">
+
           <button className="login-btn" type="submit">
             Login
           </button>
-          </Link>
         </form>
       </div>
     </div>

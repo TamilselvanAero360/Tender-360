@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./CreateBid.css";  // reuse same css
+import "./CreateBid.css"; // reuse same css
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 const EditBid = () => {
@@ -127,6 +127,15 @@ const EditBid = () => {
               />
               <span className="err">{errors.tenderId}</span>
             </div>
+            <div className="input-group">
+              <label>Tender Authority</label>
+              <input
+                name="authority"
+                value={formData.authority}
+                onChange={handleChange}
+              />
+              <span className="err">{errors.authority}</span>
+            </div>
 
             <div className="input-group">
               <label>Category</label>
@@ -160,22 +169,8 @@ const EditBid = () => {
             </div>
 
             <div className="input-group">
-              <label>Tendering Authority</label>
-              <input
-                name="authority"
-                value={formData.authority}
-                onChange={handleChange}
-              />
-              <span className="err">{errors.authority}</span>
-            </div>
-
-            <div className="input-group">
               <label>Qty</label>
-              <input
-                name="qty"
-                value={formData.qty}
-                onChange={handleChange}
-              />
+              <input name="qty" value={formData.qty} onChange={handleChange} />
               <span className="err">{errors.qty}</span>
             </div>
 
@@ -355,9 +350,11 @@ const EditBid = () => {
 
             <div className="input-group">
               <label>Doability</label>
-              <select  name="doability"
+              <select
+                name="doability"
                 value={formData.doability}
-                onChange={handleChange}>
+                onChange={handleChange}
+              >
                 <option value="select">Select</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
@@ -367,11 +364,11 @@ const EditBid = () => {
 
             <div className="input-group">
               <label>Remarks</label>
-              <textarea 
+              <textarea
                 name="remarks"
                 value={formData.remarks}
-                onChange={handleChange}>
-              </textarea>
+                onChange={handleChange}
+              ></textarea>
               <span className="err">{errors.remarks}</span>
             </div>
 

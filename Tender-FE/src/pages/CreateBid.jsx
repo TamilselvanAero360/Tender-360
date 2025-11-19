@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import "./CreateBid.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
 const CreateBid = () => {
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     tenderId: "",
     category: "",
@@ -77,6 +76,16 @@ const CreateBid = () => {
               />
               <span className="err">{errors.tenderId}</span>
             </div>
+            
+            <div className="input-group">
+              <label>Tender Authority</label>
+              <input
+                name="authority"
+                value={formData.authority}
+                onChange={handleChange}
+              />
+              <span className="err">{errors.authority}</span>
+            </div>
 
             <div className="input-group">
               <label>Category</label>
@@ -107,16 +116,6 @@ const CreateBid = () => {
                 onChange={handleChange}
               />
               <span className="err">{errors.publishedDate}</span>
-            </div>
-
-            <div className="input-group">
-              <label>Tendering Authority</label>
-              <input
-                name="authority"
-                value={formData.authority}
-                onChange={handleChange}
-              />
-              <span className="err">{errors.authority}</span>
             </div>
 
             <div className="input-group">
@@ -301,23 +300,25 @@ const CreateBid = () => {
 
             <div className="input-group">
               <label>Doability</label>
-              <select  name="doability"
+              <select
+                name="doability"
                 value={formData.doability}
-                onChange={handleChange}>
-                 <option value="selcect">--Select--</option>
-                 <option value="Yes">Yes</option>
-                 <option value="No">No</option>
+                onChange={handleChange}
+              >
+                <option value="selcect">--Select--</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
               <span className="err">{errors.doability}</span>
             </div>
 
             <div className="input-group">
               <label>Remarks</label>
-              <textarea 
+              <textarea
                 name="remarks"
                 value={formData.remarks}
-                onChange={handleChange}>
-              </textarea>
+                onChange={handleChange}
+              ></textarea>
               <span className="err">{errors.remarks}</span>
             </div>
 
@@ -352,8 +353,6 @@ const CreateBid = () => {
                   setFormData({ ...formData, uploadDoc: file });
                 }}
               />
-
-              
 
               <span className="err">{errors.uploadDoc}</span>
             </div>

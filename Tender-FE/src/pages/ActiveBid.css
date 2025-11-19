@@ -1,0 +1,224 @@
+/* ------------------------------
+   MAIN PAGE LAYOUT
+------------------------------ */
+.allbid-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0px 0px;
+}
+
+.allbid-right {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  background: #f4f5f7;
+}
+
+/* ------------------------------
+   CONTENT WRAPPER (REDUCED)
+------------------------------ */
+.allbid-container {
+  background: #ffffff;
+  margin: 16px;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* ------------------------------
+   PAGE HEADER
+------------------------------ */
+.allbid-header {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.allbid-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.allbid-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Create Button */
+.create-btn {
+  width: 200px;
+  height: 40px;
+  /* border: none; */
+  background: black;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* ------------------------------
+   TABLE WRAPPER (REDUCED)
+------------------------------ */
+.table-wrapper {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #dcdfe6;
+  overflow: hidden;
+}
+
+/* TABLE */
+.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* TABLE HEADER */
+th {
+  background: #e9e9e9 !important;
+  color: #1f1f1f;
+  padding: 10px 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.custom-table thead tr th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.custom-table thead tr th:last-child {
+  border-top-right-radius: 12px;
+}
+
+/* TABLE BODY */
+.custom-table tbody tr td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ececec;
+  background: #ffffff;
+  font-size: 14px;
+}
+
+/* ------------------------------
+   DOABILITY CELL (FIXED FIT)
+------------------------------ */
+.doability-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: auto;          
+  min-width: 120px;  
+}
+
+/* .doability-select {
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  align-content: center;
+} */
+
+.doability-badge {
+  padding: 6px 12px;    /* ← Increase */
+  border-radius: 6px;
+  font-size: 14px;      /* ← Increase */
+  font-weight: bold;
+  display: inline-flex; /* ← helps center text */
+  align-items: center;
+  justify-content: center;
+}
+
+.doability-badge.green {
+  background: #cee7cf;
+  color: #175017;
+}
+
+.doability-badge.red {
+  background: #f5b5b5;
+  color: #630000;
+}
+
+/* ------------------------------
+   REMARKS COLUMN
+------------------------------ */
+.remarks-col {
+  max-width: 150px;      /* adjust size */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;       /* indicates hoverable */
+}
+
+.remarks-text {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ------------------------------
+   ACTION COLUMN
+------------------------------ */
+.action-col {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.action-icon {
+  cursor: pointer;
+  font-size: 18px;
+  color: #444;
+}
+
+
+/* ------------------------------
+   TABLET RESPONSIVE
+------------------------------ */
+@media (max-width: 1024px) {
+  .allbid-container {
+    padding: 14px;
+    margin: 12px;
+  }
+
+  .create-btn {
+    width: 100px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  th {
+    font-size: 14px;
+    padding: 8px 6px;
+  }
+
+  .custom-table tbody tr td {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .remarks-col {
+    max-width: 150px;
+  }
+}
+.doability-cell {
+  display: table-cell !important;   /* restore normal table behaviour */
+  vertical-align: middle !important;
+  min-width: 120px;
+}
+
+.action-col {
+  display: table-cell !important;
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+.action-col .action-icon {
+  margin: 0 6px;
+}

@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import "./AllBid.css";
+import "./ActiveBid.css"; // Reuse same styling
 import { FaEye, FaEdit } from "react-icons/fa";
-import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 import SearchBar from "../components/SearchBar";
 import Filter from "../components/Filter";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const AllBid = () => {
+const ActiveBid = () => {
   const navigate = useNavigate();
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filterType, setFilterType] = useState("All filter");
-
+  // -------------------------
+  // INITIAL ACTIVE DATA ONLY
+  // -------------------------
   const initialData = [
     {
       sno: 1,
@@ -23,64 +22,32 @@ const AllBid = () => {
       authority: "Indian Army",
       qty: 10,
       state: "Haryana",
-      doability: "",
-      remarks:
-        "accepted in technical evaluation, bid contract not result found.",
+      doability: "YES",
+      remarks: "accepted in technical evaluation, bid contract not result found.",
       subDate: "08/11/2025 10:00AM",
       editedBy: "Tharun",
       editedDate: "10/11/2025 10:00AM",
       status: "Active",
-    },
-    {
-      sno: 2,
-      tenderId: "GEM/2025/B/6687213",
-      published: "20/08/2025",
-      authority: "Indian Army",
-      qty: 25,
-      state: "Gujarat",
-      doability: "",
-      remarks:
-        "accepted in technical evaluation, bid contract not result found.",
-      subDate: "08/11/2025 10:00AM",
-      editedBy: "Dravid",
-      editedDate: "08/11/2025 10:00AM",
-      status: "Archive",
-    },
-    {
-      sno: 3,
-      tenderId: "GEM/2025/B/6687214",
-      published: "20/08/2025",
-      authority: "Indian Army",
-      qty: 30,
-      state: "Maharashtra",
-      doability: "",
-      remarks:
-        "accepted in technical evaluation, bid contract not result found.",
-      subDate: "04/11/2025 10:00AM",
-      editedBy: "Mukesh",
-      editedDate: "08/11/2025 10:00AM",
-      status: "Archive",
-    },
+    }
   ];
 
   const [tableData, setTableData] = useState(initialData);
-  const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterType, setFilterType] = useState("All filter");
 
-  // Filter function
+  // -------------------------
+  // FILTER FUNCTION
+  // -------------------------
   const filteredData = tableData.filter((item) => {
     const q = searchQuery.toLowerCase();
-
-    // If no search, return all
     if (!q) return true;
 
-    // All Filter → search everything
     if (filterType === "All filter") {
       return Object.values(item).some((v) =>
         String(v).toLowerCase().includes(q)
       );
     }
 
-    // Map filter names to keys in table
     const filterKeyMap = {
       State: "state",
       "Tender Id": "tenderId",
@@ -100,8 +67,10 @@ const AllBid = () => {
     return String(item[key]).toLowerCase().includes(q);
   });
 
-  // --- SORT ---
-  const handleSort = (key) => {
+  // -------------------------
+  // SORT
+  // -------------------------
+   const handleSort = (key) => {
     let direction = "asc";
 
     if (sortConfig.key === key && sortConfig.direction === "asc") {
@@ -118,32 +87,16 @@ const AllBid = () => {
     setSortConfig({ key, direction });
   };
 
-  // --- DOABILITY CHANGE ---
-  const handleDoability = (index, value) => {
-    setTableData((prev) => {
-      const next = [...prev];
-      next[index] = {
-        ...next[index],
-        doability: value,
-        doabilitySelected: true,
-      };
-      return next;
-    });
-  };
-
   return (
     <div className="allbid-layout">
-      {/* TOPBAR */}
       <Topbar />
 
-      {/* RIGHT SIDE */}
       <div className="allbid-right">
-        {/* SIDEBAR */}
         <Sidebar />
-        {/* PAGE CONTENT */}
+
         <div className="allbid-container">
           <div className="allbid-header">
-            <h2>All bid</h2>
+            <h2>Active Bid</h2>
 
             <div className="allbid-actions">
               <SearchBar
@@ -152,20 +105,13 @@ const AllBid = () => {
               />
 
               <Filter onSelect={(val) => setFilterType(val)} />
-
-              <button
-                onClick={() => navigate("/create-bid")}
-                className="create-btn"
-              >
-                Create Bid
-              </button>
             </div>
           </div>
 
           {/* TABLE */}
           <div className="table-wrapper">
             <table className="custom-table">
-              <thead>
+             <thead>
                 <tr>
                   <th onClick={() => handleSort("sno")}>
                     S.no
@@ -304,6 +250,7 @@ const AllBid = () => {
                 </tr>
               </thead>
 
+
               <tbody>
                 {filteredData.map((item, index) => (
                   <tr key={index}>
@@ -314,45 +261,12 @@ const AllBid = () => {
                     <td>{item.qty}</td>
                     <td>{item.state}</td>
 
-                    {/* DOABILITY */}
-                    <td className="doability-cell">
-                      {tableData[index].doabilitySelected ? (
-                        // show badge only, clickable to re-open select
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setTableData((prev) => {
-                              const next = [...prev];
-                              next[index] = {
-                                ...next[index],
-                                doabilitySelected: false,
-                              };
-                              return next;
-                            })
-                          }
-                          className={`doability-badge ${
-                            item.doability === "YES" ? "green" : "red"
-                          }`}
-                          style={{ border: "none", cursor: "pointer" }}
-                        >
-                          {item.doability}
-                        </button>
-                      ) : (
-                        // show select until user selects
-                        <select
-                          value={item.doability}
-                          onChange={(e) =>
-                            handleDoability(index, e.target.value)
-                          }
-                          className="doability-select"
-                        >
-                          <option value="">--Select--</option>
-                          <option value="YES">YES</option>
-                          <option value="NO">NO</option>
-                        </select>
-                      )}
+                    {/* DOABILITY — NO FUNCTION */}
+                    <td className={`doability-badge ${item.doability === "YES" ? "green" : "red"}`}>
+                      {item.doability}
                     </td>
 
+                    {/* REMARKS TOOLTIP */}
                     <td className="remarks-col" title={item.remarks}>
                       <span className="remarks-text">{item.remarks}</span>
                     </td>
@@ -369,8 +283,8 @@ const AllBid = () => {
                       />
 
                       <FaEye
-                        className="action-icon"
                         onClick={() => navigate("/view-bid")}
+                        className="action-icon"
                       />
                     </td>
                   </tr>
@@ -378,10 +292,11 @@ const AllBid = () => {
               </tbody>
             </table>
           </div>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default AllBid;
+export default ActiveBid;
